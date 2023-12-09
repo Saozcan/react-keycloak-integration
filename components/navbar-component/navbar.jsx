@@ -29,7 +29,7 @@ const NavBar = ({ navBar2, showCase1Page }) => {
     setViewSideNav(false);
   };
 
-  const {setLogout} = useAuthKeycloak()
+  const {setLogout, isLogin} = useAuthKeycloak()
 
 
   useEffect(() => {
@@ -299,21 +299,21 @@ const NavBar = ({ navBar2, showCase1Page }) => {
               <FaShoppingCart />
             </div>
 
-            <Link onClick={scrollToTop} to="/keycloak-auth">
+            {!isLogin && <Link onClick={scrollToTop} to="/keycloak-auth">
               <Button
                 content={"KAYDOL"}
                 fontSize={"text-xl"}
                 fontWeight={""}
                 padding={"px-5  py-2"}
               />
-            </Link>
-              <Button
-                onClick={() => setLogout()}
-                content={"Logout"}
-                fontSize={"text-xl"}
-                fontWeight={""}
-                padding={"px-5  py-2"}
-              />
+            </Link>}
+            {isLogin && <Button
+              onClick={() => setLogout()}
+              content={"Logout"}
+              fontSize={"text-xl"}
+              fontWeight={""}
+              padding={"px-5  py-2"}
+            />}
 
             
           </ul>
