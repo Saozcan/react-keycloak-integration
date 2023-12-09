@@ -1,6 +1,7 @@
 import create from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 import {logoutFunction} from "../hooks/useAuth.jsx";
+import axios from "axios";
 
 // type KeycloakToken = {
 //   exp: number
@@ -67,6 +68,13 @@ const useAuthKeycloak = create(
             isLogin: false,
           }))
           await logoutFunction();
+        },
+        sendToken: async (token) => {
+          try{
+            await axios.post(import.meta.env.VITE_BASE_URL + '/users', {token})
+          } catch (e) {
+            console.log('send token error ==> ', e)
+          }
         },
       }),
       { name: 'keycloak-detail' },

@@ -15,7 +15,7 @@ const client = new Keycloak({
 
 const useAuth = () => {
     const isRun = useRef(false);
-    const {setToken, setRefreshToken, setDetail, setKeycloak, setLogin, isLogin} = useAuthKeycloak()
+    const {setToken, setRefreshToken, setDetail, setKeycloak, setLogin, isLogin, sendToken} = useAuthKeycloak()
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -33,6 +33,7 @@ const useAuth = () => {
                   onLoad: "login-required",
               })
               .then((res) => {
+                  sendToken(client.token)
                   setLogin(res)
                   setToken(client.token);
                   setRefreshToken(client.refreshToken);
