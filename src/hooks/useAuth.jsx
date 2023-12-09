@@ -2,7 +2,6 @@ import  { useEffect, useRef } from "react";
 import Keycloak from "keycloak-js";
 import {jwtDecode} from "jwt-decode";
 import useAuthKeycloak from "../store/useAuthKeycloak.js";
-import axios from "axios";
 import {useNavigate} from "react-router";
 
 const client = new Keycloak({
